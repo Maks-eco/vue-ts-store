@@ -1,3 +1,5 @@
+on: push
+
 image: node:16.5.0
 pages:
   stage: deploy
