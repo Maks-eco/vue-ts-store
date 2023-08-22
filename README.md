@@ -18,4 +18,3 @@
 - VueJS
 - HTML/CSS
 
-*
