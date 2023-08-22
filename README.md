@@ -1,4 +1,5 @@
 ## vue-store
+
 [Ссылка на размещенный проект](https://maks-eco.github.io/vue-ts-store/)
 
 ## Описание
@@ -16,3 +17,5 @@
 - Typescript
 - VueJS
 - HTML/CSS
+
+*
