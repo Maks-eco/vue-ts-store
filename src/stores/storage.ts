@@ -4,8 +4,8 @@ import type StorageProduct from '../types/StorageProduct'
 import type Category from '@/types/Category'
 import type Product from '../types/Product'
 
-const storeId = '58958138'
-const token = 'public_7BxbJGWyDaZfSQqjVS5Ftr4jzXkS43UD'
+const storeId = '108362264'
+const token = 'public_RiNvjTVVzKLhFNWyzR5fNY68u1GMHLEs'
 
 const options = {
   method: 'GET',
