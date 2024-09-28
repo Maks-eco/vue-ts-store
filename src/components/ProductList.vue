@@ -1,4 +1,5 @@
 <template>
+  <div class="products__unable">Store temporarily out of service</div>
   <CartButton />
   <Transition>
     <p class="warn-msg" v-if="products && products.length == 0">
@@ -102,6 +103,12 @@ onMounted(() => {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+}
+.products__unable {
+  position: fixed;
+  top: 50vh;
+  width: 100vw;
+  text-align: center;
 }
 .product-list__contnr {
   width: 100%;
