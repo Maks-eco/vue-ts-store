@@ -1,8 +1,8 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import type StorageProduct from '../types/StorageProduct'
-import type Category from '../types/Category'
-import type Product from '../types/Product'
+import type { StorageProduct } from '../types/StorageProduct'
+import type { Category } from '../types/Category'
+import type { Product } from '../types/Product'
 
 const storeId = '108362264'
 const token = 'public_RiNvjTVVzKLhFNWyzR5fNY68u1GMHLEs'
@@ -32,10 +32,10 @@ const useCounterStore = defineStore('counter', () => {
   })
 
   const getCountItems = computed(() => {
-    return 22 /* count.value.reduce(
+    return count.value.reduce(
       (acc: number, item: StorageProduct) => acc + item.count,
       0
-    ); */
+    )
   })
 
   const saveValue = (id: number) => {

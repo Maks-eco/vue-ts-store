@@ -24,7 +24,7 @@
 
 <script lang="ts" setup>
 import type { PropType } from 'vue'
-import type Product from '../types/Product'
+import type { Product } from '../types/Product'
 import useCounterStore from '../stores/storage'
 
 const store = useCounterStore()

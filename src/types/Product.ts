@@ -6,4 +6,4 @@ interface Product {
   price: number
 }
 
-export default Product
+export type { Product }

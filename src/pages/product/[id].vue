@@ -23,7 +23,7 @@
 
 <script lang="ts" setup>
 import { ref, onMounted, watch, computed } from 'vue'
-import type Product from '@/types/Product'
+import type { Product } from '@/types/Product'
 import CartButton from '@/components/CartButton.vue'
 import useCounterStore from '@/stores/storage'
 // import { useMeta } from 'vue-meta'

@@ -13,7 +13,7 @@
 
 <script lang="ts" setup>
 import { ref, onUpdated, onMounted } from 'vue'
-import type Category from '@/types/Category'
+import type { Category } from '@/types/Category'
 import OneCategory from './OneCategory.vue'
 import useCounterStore from '@/stores/storage'
 
@@ -22,8 +22,8 @@ const store = useCounterStore()
 const props = defineProps({
   id: {
     required: false,
-    type: String
-  }
+    type: String,
+  },
 })
 
 const getCategory = async () => {

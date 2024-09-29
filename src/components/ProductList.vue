@@ -1,5 +1,4 @@
 <template>
-  <div class="products__unable">Store temporarily out of service</div>
   <CartButton />
   <Transition>
     <p class="warn-msg" v-if="products && products.length == 0">
@@ -20,7 +19,7 @@
 
 <script lang="ts" setup>
 import { watch, onMounted, ref } from 'vue'
-import type Product from '../types/Product'
+import type { Product } from '../types/Product'
 import OneProduct from './OneProduct.vue'
 import CartButton from './CartButton.vue'
 import { useRoute } from 'vue-router'
@@ -61,7 +60,7 @@ watch(
     if (observe.value) {
       let options = {
         rootMargin: '0px',
-        threshold: 1.0
+        threshold: 1.0,
       }
 
       let callback = (entries: any, observer: any) => {
@@ -103,12 +102,6 @@ onMounted(() => {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
-}
-.products__unable {
-  position: fixed;
-  top: 50vh;
-  width: 100vw;
-  text-align: center;
 }
 .product-list__contnr {
   width: 100%;

@@ -18,5 +18,8 @@
   },
   "overrides": {
     "vue": "latest"
+  },
+  "devDependencies": {
+    "less": "^4.2.0"
   }
 }

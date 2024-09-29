@@ -5,4 +5,4 @@ interface Category {
   hdThumbnailUrl: string
 }
 
-export default Category
+export type { Category }
