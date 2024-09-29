@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   srcDir: 'src/',
   css: ['@/global/styles.less'],
-  modules: ['@pinia/nuxt'],
+  modules: ['@pinia/nuxt', '@nuxtjs/i18n'],
   vite: {
     css: {
       preprocessorOptions: {
@@ -13,5 +13,8 @@ export default defineNuxtConfig({
         },
       },
     },
+  },
+  i18n: {
+    vueI18n: '@/plugins/i18n.config.ts',
   },
 })
