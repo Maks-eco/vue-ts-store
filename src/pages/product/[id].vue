@@ -3,7 +3,11 @@
   <div class="product-contnr">
     <div class="one-product" v-if="productData">
       <div class="product__img-contnr">
-        <img class="product__one-img" alt="product" :src="productData.hdThumbnailUrl" />
+        <img
+          class="product__one-img"
+          alt="product"
+          :src="productData.hdThumbnailUrl"
+        />
       </div>
       <div class="product__descr-contnr">
         <h1 class="product__descr-name">{{ productData.name }}</h1>
@@ -19,29 +23,29 @@
 
 <script lang="ts" setup>
 import { ref, onMounted, watch, computed } from 'vue'
-import type Product from '../types/Product'
-import CartButton from '../components/CartButton.vue'
-import useCounterStore from '../stores/storage'
-import { useMeta } from 'vue-meta'
+import type Product from '@/types/Product'
+import CartButton from '@/components/CartButton.vue'
+import useCounterStore from '@/stores/storage'
+// import { useMeta } from 'vue-meta'
 
 const store = useCounterStore()
 
 const props = defineProps({
   id: {
     required: true,
-    type: String
-  }
+    type: String,
+  },
 })
 
 let pageName = ref('Product' as string)
 const productData = ref(null as Product | null)
 const loadStatus = ref('Загрузка описания товара...' as string)
 
-useMeta(
-  computed(() => ({
-    title: pageName.value
-  }))
-)
+// useMeta(
+//   computed(() => ({
+//     title: pageName.value
+//   }))
+// )
 
 onMounted(async () => {
   const data = await store.getProductDataById(props.id)

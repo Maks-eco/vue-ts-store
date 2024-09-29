@@ -1,9 +1,12 @@
 <template>
   <div>
-    <router-link to="/cart">
+    <NuxtLink to="/cart">
       <div class="cart">
         <img class="cart__img" alt="cart" src="../assets/1396q90627.jpg" />
-        <div class="cart-counter__contnr" v-if="numberOfPurchases.getCountItems > 0">
+        <div
+          class="cart-counter__contnr"
+          v-if="numberOfPurchases.getCountItems > 0"
+        >
           <p class="cart-counter__text">
             {{
               parseInt(numberOfPurchases.getCountItems.toString(), 10) < 100
@@ -13,7 +16,7 @@
           </p>
         </div>
       </div>
-    </router-link>
+    </NuxtLink>
   </div>
 </template>
 

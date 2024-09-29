@@ -15,12 +15,19 @@
     <div class="product-contnr" v-for="item in products" :key="item.id">
       <div class="one-product">
         <div class="product__img-contnr">
-          <img class="product__one-img" alt="product preview" v-bind:src="item.hdThumbnailUrl" />
+          <img
+            class="product__one-img"
+            alt="product preview"
+            v-bind:src="item.hdThumbnailUrl"
+          />
         </div>
         <div class="product__descr">
           <p class="product__descr-name">{{ item.name }}</p>
           <p class="product__descr-name">Количество: {{ item.count }}</p>
-          <button class="cart-button cart-button--delete-product" @click="deleteProduct(item.id)">
+          <button
+            class="cart-button cart-button--delete-product"
+            @click="deleteProduct(item.id)"
+          >
             Удалить
           </button>
         </div>
@@ -36,11 +43,11 @@ import { onMounted, ref } from 'vue'
 import type Product from '../types/Product'
 import OrderCompletionMessage from '../components/OrderCompletionMessage.vue'
 import useCounterStore from '../stores/storage'
-import { useMeta } from 'vue-meta'
+// import { useMeta } from 'vue-meta'
 
-useMeta({
-  title: 'Cart'
-})
+// useMeta({
+//   title: 'Cart'
+// })
 
 const store = useCounterStore()
 
@@ -56,7 +63,7 @@ const getProductsInCartWithCount = async (): Promise<ProductCount[] | null> => {
       .map((item) => {
         return {
           ...item,
-          ...arrayIds.filter((chunk) => chunk.id === item.id)[0]
+          ...arrayIds.filter((chunk) => chunk.id === item.id)[0],
         }
       })
       .filter((item) => item.count)

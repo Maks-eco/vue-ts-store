@@ -1,14 +1,19 @@
 <template>
   <div class="product-contnr">
-    <router-link :to="{ name: 'ProductDetails', params: { id: item.id } }">
+    <router-link :to="{ name: 'product-id', params: { id: item.id } }">
       <div class="one-product">
         <div class="product__img-contnr">
-          <img class="product__img" alt="product" v-bind:src="item.hdThumbnailUrl" />
+          <img
+            class="product__img"
+            alt="product"
+            v-bind:src="item.hdThumbnailUrl"
+          />
         </div>
         <p class="product__name product-descr--transn">{{ item.name }}</p>
         <div class="product__price-contnr product-descr--transn">
           <p class="product__price">
-            <text class="product__price--small-text">Цена:</text> {{ item.price.toFixed(2) }}
+            <text class="product__price--small-text">Цена:</text>
+            {{ item.price.toFixed(2) }}
           </p>
         </div>
       </div>
@@ -27,8 +32,8 @@ const store = useCounterStore()
 defineProps({
   item: {
     required: true,
-    type: Object as PropType<Product>
-  }
+    type: Object as PropType<Product>,
+  },
 })
 
 const saveToCart = (id: number) => {

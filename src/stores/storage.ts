@@ -1,7 +1,7 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import type StorageProduct from '../types/StorageProduct'
-import type Category from '@/types/Category'
+import type Category from '../types/Category'
 import type Product from '../types/Product'
 
 const storeId = '108362264'
@@ -9,14 +9,14 @@ const token = 'public_RiNvjTVVzKLhFNWyzR5fNY68u1GMHLEs'
 
 const options = {
   method: 'GET',
-  headers: { accept: 'application/json', Authorization: `Bearer ${token}` }
+  headers: { accept: 'application/json', Authorization: `Bearer ${token}` },
 }
 
 const locStorage = {
   saveData: (name: string, value: any) => {
     localStorage.setItem(name, JSON.stringify(value))
   },
-  getData: (name: string) => JSON.parse(localStorage.getItem(name) || '')
+  getData: (name: string) => JSON.parse(localStorage.getItem(name) || ''),
 }
 
 const useCounterStore = defineStore('counter', () => {
@@ -32,7 +32,10 @@ const useCounterStore = defineStore('counter', () => {
   })
 
   const getCountItems = computed(() => {
-    return count.value.reduce((acc: number, item: StorageProduct) => acc + item.count, 0)
+    return 22 /* count.value.reduce(
+      (acc: number, item: StorageProduct) => acc + item.count,
+      0
+    ); */
   })
 
   const saveValue = (id: number) => {
@@ -81,7 +84,10 @@ const useCounterStore = defineStore('counter', () => {
   }
 
   const getProductDataById = (id: string): Promise<null | Product> => {
-    return fetch(`https://app.ecwid.com/api/v3/${storeId}/products?productId=${id}`, options)
+    return fetch(
+      `https://app.ecwid.com/api/v3/${storeId}/products?productId=${id}`,
+      options
+    )
       .then((response) => response.json())
       .then((response) => {
         return response.items[0] as Product
@@ -94,7 +100,9 @@ const useCounterStore = defineStore('counter', () => {
 
   const getAllProduct = async (page: number): Promise<null | Product[]> => {
     return fetch(
-      `https://app.ecwid.com/api/v3/${storeId}/products?offset=${(page - 1) * 6}&limit=6`,
+      `https://app.ecwid.com/api/v3/${storeId}/products?offset=${
+        (page - 1) * 6
+      }&limit=6`,
       options
     )
       .then((response) => response.json())
@@ -117,9 +125,13 @@ const useCounterStore = defineStore('counter', () => {
     )
       .then((response) => response.json())
       .then((response) => {
-        const category = response.items.filter((item: any) => item.id.toString() === id)[0]
+        const category = response.items.filter(
+          (item: any) => item.id.toString() === id
+        )[0]
         if (!category?.productIds) return null
-        const idsListBuf = category.productIds.slice((page - 1) * 6, page * 6).join(',')
+        const idsListBuf = category.productIds
+          .slice((page - 1) * 6, page * 6)
+          .join(',')
         if (idsListBuf.length < 1) return null
         return idsListBuf
       })
@@ -128,7 +140,10 @@ const useCounterStore = defineStore('counter', () => {
         return null
       })
     if (!idsList) return null
-    return fetch(`https://app.ecwid.com/api/v3/${storeId}/products?productId=${idsList}`, options)
+    return fetch(
+      `https://app.ecwid.com/api/v3/${storeId}/products?productId=${idsList}`,
+      options
+    )
       .then((response) => response.json())
       .then((response) => {
         return response.items as Product[]
@@ -149,7 +164,7 @@ const useCounterStore = defineStore('counter', () => {
     getCategoryData,
     getProductData,
     getProductDataById,
-    getProductDataByCategoryId
+    getProductDataByCategoryId,
   }
 })
 
