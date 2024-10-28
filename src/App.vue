@@ -2,7 +2,8 @@
   <router-link to="/">
     <img class="logo__img" alt="logo" src="./assets/logo.jpg" />
   </router-link>
-  <router-view />
+  <NuxtPage page-key="index" />
+  <!-- <router-view /> -->
 </template>
 
 <style>
