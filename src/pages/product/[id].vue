@@ -1,24 +1,26 @@
 <template>
-  <CartButton />
-  <div class="product-contnr">
-    <div class="one-product" v-if="productData">
-      <div class="product__img-contnr">
-        <img
-          class="product__one-img"
-          alt="product"
-          :src="productData.hdThumbnailUrl"
-        />
-      </div>
-      <div class="product__descr-contnr">
-        <h1 class="product__descr-name">{{ productData.name }}</h1>
-        <p v-html="productData.description"></p>
-        <h4>Стоимость: {{ productData.price }}</h4>
-        <button class="buy-button" @click="saveToCart(id)">Купить</button>
-      </div>
+    <CartButton />
+    <div class="product-contnr">
+        <div class="one-product" v-if="productData">
+            <div class="product__img-contnr">
+                <img
+                    class="product__one-img"
+                    alt="product"
+                    :src="productData.hdThumbnailUrl"
+                />
+            </div>
+            <div class="product__descr-contnr">
+                <h1 class="product__descr-name">{{ productData.name }}</h1>
+                <p v-html="productData.description"></p>
+                <h4>Стоимость: {{ productData.price }}</h4>
+                <button class="buy-button" @click="saveToCart(id)">
+                    Купить
+                </button>
+            </div>
+        </div>
+        <p v-else>{{ loadStatus }}</p>
     </div>
-    <p v-else>{{ loadStatus }}</p>
-  </div>
-  <metainfo />
+    <metainfo />
 </template>
 
 <script lang="ts" setup>
@@ -29,12 +31,16 @@ import useCounterStore from '@/stores/storage'
 // import { useMeta } from 'vue-meta'
 
 const store = useCounterStore()
-
+const route = useRoute()
+let pageId = ''
+if (typeof route.params.id === 'string') {
+    pageId = route.params.id
+}
 const props = defineProps({
-  id: {
-    required: true,
-    type: String,
-  },
+    id: {
+        required: true,
+        type: String,
+    },
 })
 
 let pageName = ref('Product' as string)
@@ -48,84 +54,84 @@ const loadStatus = ref('Загрузка описания товара...' as st
 // )
 
 onMounted(async () => {
-  const data = await store.getProductDataById(props.id)
-  if (data?.name) {
-    productData.value = data
-  } else {
-    loadStatus.value = 'Описание товара не найдено'
-  }
+    const data = await store.getProductDataById(pageId)
+    if (data?.name) {
+        productData.value = data
+    } else {
+        loadStatus.value = 'Описание товара не найдено'
+    }
 })
 
 watch(
-  () => productData.value,
-  () => {
-    if (productData.value?.name) {
-      pageName.value = productData.value?.name
-    }
-  },
-  { deep: true, immediate: true }
+    () => productData.value,
+    () => {
+        if (productData.value?.name) {
+            pageName.value = productData.value?.name
+        }
+    },
+    { deep: true, immediate: true }
 )
 
 const saveToCart = (id: string) => {
-  const idValue = parseInt(id, 10)
-  store.saveValue(idValue)
+    const idValue = parseInt(id, 10)
+    store.saveValue(idValue)
 }
 </script>
 
 <style scoped>
 .buy-button {
-  background-color: #444;
-  border: none;
-  color: white;
-  padding: 8px 20px;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  transition: background-color 0.2s;
+    background-color: #444;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition: background-color 0.2s;
 }
 .buy-button:hover {
-  background-color: #af66d4;
+    background-color: #af66d4;
 }
 .one-product {
-  margin-top: 30px;
-  width: 860px;
-  display: flex;
-  flex-wrap: wrap;
+    margin-top: 30px;
+    width: 860px;
+    display: flex;
+    flex-wrap: wrap;
 }
 .product-contnr {
-  display: flex;
-  justify-content: center;
-  width: 80%;
-  margin: 0px auto;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: 0px auto;
 }
 .product__one-img {
-  width: 100%;
+    width: 100%;
 }
 @media (min-width: 480px) {
-  .product__img-contnr {
-    width: 35%;
-    min-width: 150px;
-  }
-  .product__descr-contnr {
-    margin-left: 5%;
-    width: 60%;
-  }
+    .product__img-contnr {
+        width: 35%;
+        min-width: 150px;
+    }
+    .product__descr-contnr {
+        margin-left: 5%;
+        width: 60%;
+    }
 }
 @media (max-width: 780px) {
-  .product-contnr {
-    width: 100%;
-  }
+    .product-contnr {
+        width: 100%;
+    }
 }
 @media (max-width: 480px) {
-  .product__img-contnr {
-    width: 100%;
-    min-width: 200px;
-  }
-  .product__descr-contnr {
-    width: 100%;
-  }
+    .product__img-contnr {
+        width: 100%;
+        min-width: 200px;
+    }
+    .product__descr-contnr {
+        width: 100%;
+    }
 }
 .product__descr-name {
-  margin-top: 0px;
+    margin-top: 0px;
 }
 </style>
