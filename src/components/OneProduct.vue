@@ -6,7 +6,7 @@
                     <img
                         class="product__img"
                         alt="product"
-                        v-bind:src="item.hdThumbnailUrl"
+                        v-bind="{ src: item.hdThumbnailUrl }"
                     />
                 </div>
                 <p class="product__name product-descr--transn">

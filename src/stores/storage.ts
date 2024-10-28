@@ -104,20 +104,8 @@ const useCounterStore = defineStore('counter', () => {
     }
 
     const getAllProduct = async (page: number): Promise<null | Product[]> => {
-        return fetch(
-            `https://app.ecwid.com/api/v3/${storeId}/products?offset=${
-                (page - 1) * 6
-            }&limit=6`,
-            options
-        )
-            .then((response) => response.json())
-            .then((response) => {
-                return response.items as Product[]
-            })
-            .catch((err) => {
-                console.error(err)
-                return null
-            })
+        const data = await $fetch<null | Product[]>('products.json')
+        return data
     }
 
     const getProductDataByCategoryId = async (
