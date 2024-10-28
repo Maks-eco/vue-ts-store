@@ -4,7 +4,7 @@
   <p>{{ $t('mes') }}</p>
   <!-- <metainfo /> -->
   <CartButton />
-  <CategoryList />
+  <!-- <CategoryList /> -->
   <ProductList />
 </template>
 

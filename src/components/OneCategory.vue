@@ -3,7 +3,11 @@
     <router-link :to="{ name: 'CategoryView', params: { id: item.id } }">
       <div class="one-section">
         <div class="section__img-contnr">
-          <img class="section__img" alt="category" v-bind:src="item.hdThumbnailUrl" />
+          <img
+            class="section__img"
+            alt="category"
+            v-bind:src="item.hdThumbnailUrl"
+          />
         </div>
         <p class="section__descr">{{ item.name }}</p>
       </div>
@@ -13,13 +17,13 @@
 
 <script lang="ts" setup>
 import type { PropType } from 'vue'
-import type Category from '@/types/Category'
+import type { Category } from '@/types/Category'
 
 defineProps({
   item: {
     required: true,
-    type: Object as PropType<Category>
-  }
+    type: Object as PropType<Category>,
+  },
 })
 </script>
 
